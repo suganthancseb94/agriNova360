@@ -1,0 +1,99 @@
+# Smart Agriculture AI Application - Implementation Plan
+
+## Goal Description
+Create a state-of-the-art, AI-driven mobile web application tailored for farmers to optimize crop management, market forecasting, and disease detection.
+
+## Proposed System Architecture
+
+### 1. High-Level Architecture
+The system will follow a **Microservices Architecture** to ensure scalability and modularity of specialized functions like AI analysis and Market Forecasting.
+
+```mermaid
+graph TD
+    A[Mobile Web Client - React/Vite] --> B[API Gateway]
+    B --> C[User Service]
+    B --> D[AI/ML Service - Python/FastAPI]
+    B --> E[Market & Climate Service]
+    B --> F[Shop & Media Service]
+    
+    D --> G[Image Recognition Model - Disease]
+    D --> H[LLM - Farmer Assistant]
+    
+    E --> I[OpenWeather API]
+    E --> J[Market Feed API]
+    
+    C --> K[(PostgreSQL - Core Data)]
+    D --> L[(Vector DB - Knowledge Knowledge)]
+    F --> M[(MongoDB - Media/Shop Stock)]
+```
+
+### 2. Technology Stack & APIs
+- **Frontend**: **Vite + React** (Fast development, PWA support), **Tailwind CSS** (Custom theme).
+- **Visualization**: **Chart.js** or **Recharts** for weather and market trends.
+- **Localization**: **i18next** (Supports Hindi, Telugu, Tamil, etc.).
+- **Backend Core**: **Node.js (TypeScript)** with **Prisma ORM** for PostgreSQL.
+- **AI Backend**: **Python (FastAPI)** with **PyTorch** for disease classification.
+- **External APIs**: 
+    - **OpenWeatherMap Agri API**: Specialized for soil moisture and satellite data.
+    - **Google Maps API**: For shop locations and routing.
+    - **Firebase (FCM)**: Push notifications for reminders.
+- **Database**: 
+    - **PostgreSQL**: User profiles, reminders, shops.
+    - **MongoDB**: Education reels, documents, chat logs.
+    - **Redis**: Real-time task queue for reminders.
+
+---
+
+## Database Structure (Key Modules)
+
+### [User & Land]
+- `users`: `id, phone, username, location_coords, created_at`
+- `lands`: `id, user_id, size, soil_type, current_crop_id, history`
+
+### [Market & Forecasting]
+- `market_prices`: `id, crop_id, market_name, price, date`
+- `price_forecasts`: `id, crop_id, predicted_price, confidence_score`
+
+### [AI & Reminders]
+- `reminders`: `id, user_id, task_desc, trigger_time, completed_at, image_hint`
+- `disease_logs`: `id, user_id, crop_id, detected_disease, confidence, treatment`
+
+---
+
+## UI Module Suggestions
+
+### 1. The "Farmer First" Dashboard
+- Large, high-contrast buttons with iconography.
+- **Weather Widget**: Real-time agriculture-specific climate stats.
+- **AI Quick-Action**: Floating action button for camera (Disease detection).
+
+### 2. Smart Media Reel (Agri-Media)
+- Vertical video feed optimized for low bandwidth.
+- Interactive "Apply to my farm" button next to tips.
+
+### 3. Interactive Shop Map
+- Geo-location based shop list.
+- Real-time stock status (In Stock / Low / Out OF Stock).
+- Green badges for "Organic Alternatives".
+
+---
+
+## Proposed Changes
+
+### Core Implementation [NEW]
+- `src/components/Dashboard`: Main hub for farmers.
+- `src/services/ai`: Integration with vision and chat models.
+- `src/services/market`: Data visualization for price trends.
+- `src/components/ReminderSystem`: Timeline and notification engine.
+
+## Verification Plan
+
+### Automated Tests
+1. **API Integration Tests**: Verify weather and market data fetching.
+2. **AI Mocking**: Test disease detection flow with sample images in a CI environment.
+3. **PWA Compliance**: Ensure offline capabilities and installability on Android.
+
+### Manual Verification
+- Testing GPS shop discovery in real-world scenarios.
+- Verifying the "Simple UI" with color-blindness and low-light accessibility tests.
+- UI/UX walkthrough with actual farming workflow mocks.

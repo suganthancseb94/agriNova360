@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSmart - AI Powered Farming</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Translate Script (Hidden) -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ta,hi',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+    <div id="google_translate_element" style="display: none;"></div>
+    <div id="app-container">
+        <!-- Navigation Bar -->
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>AgriNova360°</span>
+            </div>
+            <div class="nav-actions-top">
+                <!-- Language Selector -->
+                <div class="nav-lang" onclick="toggleLangDropdown(event)">
+                    <i class="fas fa-language"></i>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <div class="dropdown-item" onclick="changeLanguage('en', event)">English</div>
+                        <div class="dropdown-item" onclick="changeLanguage('ta', event)">தமிழ் (Tamil)</div>
+                        <div class="dropdown-item" onclick="changeLanguage('hi', event)">हिन्दी (Hindi)</div>
+                    </div>
+                </div>
+                <div class="nav-quiz-icon" onclick="navigateTo('quiz')">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="nav-user" onclick="toggleUserDropdown(event)">
+                    <i class="fas fa-user-circle"></i>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-item" onclick="navigateTo('profile', event)"><i class="fas fa-user"></i> My Profile</div>
+                        <div class="dropdown-item" onclick="navigateTo('settings', event)"><i class="fas fa-cog"></i> Settings</div>
+                        <div class="dropdown-item" onclick="navigateTo('feedback', event)"><i class="fas fa-comment-dots"></i> Feedback</div>
+                        <div class="dropdown-item" onclick="navigateTo('quick-start', event)"><i class="fas fa-play-circle"></i> Quick Start</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Dashboard View -->
+        <main id="main-content">
+            <section class="dashboard">
+                <!-- Weather Widget -->
+                <div class="card weather-widget" onclick="navigateTo('weather-details')" style="cursor: pointer;">
+                    <div class="weather-main">
+                        <div class="temp-info">
+                            <h2>28°C</h2>
+                            <p>Partly Cloudy</p>
+                        </div>
+                        <i class="fas fa-cloud-sun weather-icon"></i>
+                    </div>
+                    <div class="weather-stats">
+                        <span><i class="fas fa-tint"></i> 65% Humidity</span>
+                        <span><i class="fas fa-cloud-rain"></i> 10% Rain</span>
+                    </div>
+                </div>
+
+                <!-- Feature Grid -->
+                <div class="feature-grid">
+                    <div class="feature-card" onclick="navigateTo('disease-detection')">
+                        <div class="icon-box disease"><i class="fas fa-vial"></i></div>
+                        <h3>Disease Detector</h3>
+                    </div>
+                    <div class="feature-card" onclick="navigateTo('market')">
+                        <div class="icon-box market"><i class="fas fa-chart-line"></i></div>
+                        <h3>Market Forecast</h3>
+                    </div>
+                    <div class="feature-card" onclick="navigateTo('soil-test')">
+                        <div class="icon-box soil"><i class="fas fa-flask"></i></div>
+                        <h3>Soil Testing</h3>
+                    </div>
+                    <div class="feature-card" onclick="navigateTo('reminders')">
+                        <div class="icon-box reminders"><i class="fas fa-bell"></i></div>
+                        <h3>Smart Reminders</h3>
+                    </div>
+                    <div class="feature-card" onclick="navigateTo('shops')">
+                        <div class="icon-box shops"><i class="fas fa-store"></i></div>
+                        <h3>Agri Shops</h3>
+                    </div>
+                    <div class="feature-card" onclick="navigateTo('weather-details')">
+                        <div class="icon-box climate" style="background:rgba(52,152,219,0.1);color:#3498db"><i
+                                class="fas fa-cloud-sun"></i></div>
+                        <h3>Climate</h3>
+                    </div>
+                    <div class="feature-card" onclick="navigateTo('crop-guidance')">
+                        <div class="icon-box guidance" style="background:rgba(39,174,96,0.1);color:#27ae60"><i
+                                class="fas fa-seedling"></i></div>
+                        <h3>Crop Guide</h3>
+                    </div>
+                </div>
+
+                <!-- Tools Section -->
+                <div class="section-title" style="margin-top: 25px; margin-bottom: 15px;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #1e293b;">Tools</h3>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-card" onclick="navigateTo('fertilizer-calc')">
+                        <div class="tool-icon"><i class="fas fa-leaf"></i></div>
+                        <p>Fertilizer<br>calculator</p>
+                    </div>
+                    <div class="tool-card" onclick="navigateTo('pesticide-calc')">
+                        <span class="badge-new">New</span>
+                        <div class="tool-icon"><i class="fas fa-spray-can"></i></div>
+                        <p>Pesticide<br>calculator</p>
+                    </div>
+                    <div class="tool-card" onclick="navigateTo('farming-calc')">
+                        <span class="badge-new">New</span>
+                        <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                        <p>Farming<br>calculator</p>
+                    </div>
+                </div>
+
+                <!-- Library Section -->
+                <div class="section-title" style="margin-top: 25px; margin-bottom: 15px;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #1e293b;">Library</h3>
+                </div>
+                <div class="library-grid">
+                    <div class="lib-card" onclick="navigateTo('library', 'Paddy')">
+                        <div class="lib-icon"><i class="fas fa-seedling"></i></div>
+                        <p>Paddy<br>Library</p>
+                    </div>
+                    <div class="lib-card" onclick="navigateTo('library', 'Wheat')">
+                        <div class="lib-icon"><i class="fas fa-wheat-awn"></i></div>
+                        <p>Wheat<br>Library</p>
+                    </div>
+                    <div class="lib-card" onclick="navigateTo('library', 'Soil')">
+                        <div class="lib-icon"><i class="fas fa-flask-vial"></i></div>
+                        <p>Soil<br>Library</p>
+                    </div>
+                    <div class="lib-card" onclick="navigateTo('library', 'Organic')">
+                        <div class="lib-icon"><i class="fas fa-leaf"></i></div>
+                        <p>Organic<br>Library</p>
+                    </div>
+                </div>
+
+                <!-- Ads Slideshow Section -->
+                <div class="ads-container">
+                    <div class="ads-wrapper" id="ads-wrapper">
+                        <div class="ad-slide"
+                            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80')">
+                            <div class="ad-content">
+                                <span>Special Offer</span>
+                                <h4>Get 20% Off on Organic Seeds</h4>
+                                <button class="ad-btn">Shop Now</button>
+                            </div>
+                        </div>
+                        <div class="ad-slide"
+                            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80')">
+                            <div class="ad-content">
+                                <span>Soil Expert</span>
+                                <h4>Free Soil Testing This Week</h4>
+                                <button class="ad-btn">Book Now</button>
+                            </div>
+                        </div>
+                        <div class="ad-slide"
+                            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1592982537447-6f2a6a0c3c1b?auto=format&fit=crop&w=600&q=80')">
+                            <div class="ad-content">
+                                <span>New Tech</span>
+                                <h4>Smart Irrigation System V2</h4>
+                                <button class="ad-btn">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ads-dots" id="ads-dots">
+                        <span class="ad-dot active"></span>
+                        <span class="ad-dot"></span>
+                        <span class="ad-dot"></span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <footer class="bottom-nav">
+            <div class="nav-item active" onclick="navigateTo('dashboard')"><i class="fas fa-home"></i><span>Home</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('community')"><i
+                    class="fas fa-users-viewfinder"></i><span>Community</span></div>
+            <div class="nav-item center-btn" onclick="navigateTo('ai-assistant')"><i class="fas fa-robot"></i></div>
+            <div class="nav-item" onclick="navigateTo('shops')"><i class="fas fa-store"></i><span>Shop</span></div>
+            <div class="nav-item" onclick="navigateTo('experts')"><i class="fas fa-user-tie"></i><span>Experts</span>
+            </div>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

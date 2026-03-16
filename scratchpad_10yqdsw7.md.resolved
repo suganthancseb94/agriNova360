@@ -1,0 +1,26 @@
+# AI Agriculture App Test Plan
+
+- [x] Open application at `file:///e:/sugu%20project/project/index.html` - **FAILED** (Blocked by browser safety settings)
+- [ ] Find a way to access the application (Check for local server)
+- [ ] Complete registration flow
+    - [ ] Click 'Login / Sign Up'
+    - [ ] Enter phone number and click 'Verify'
+    - [ ] Enter username and click 'Next'
+    - [ ] Enter land details and click 'Next'
+    - [ ] Click 'Start Farming'
+- [ ] Browse and screenshot features:
+    - [ ] AI Assistant (bottom nav)
+    - [ ] Disease Detection (dashboard)
+    - [ ] Market Forecast (dashboard)
+    - [ ] Soil Testing (dashboard)
+    - [ ] Smart Reminders (dashboard)
+    - [ ] Climate (dashboard)
+    - [ ] Crop Guide (dashboard)
+    - [ ] Knowledge Center (bottom nav 'Library')
+    - [ ] Experts (bottom nav 'Experts')
+- [ ] Verify features and summarize findings
+
+## Observations
+- `file:///` URLs are blocked with "access to file URL is blocked".
+- `http://127.0.0.1:2121/index.html` failed with "target closed".
+- Need to find the correct local server address or inform the user.

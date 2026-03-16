@@ -1,0 +1,55 @@
+# AgriSmart Walkthrough
+
+AgriSmart is a premium, AI-driven Smart Agriculture Mobile Application designed to empower farmers with real-time data and AI assistance.
+
+## 🚀 Registration Flow
+The app features a multi-step, farmer-friendly registration flow to personalize the experience.
+- **Login / Sign Up**: Initial entry point.
+- **OTP Verification**: Secure phone number authentication.
+- **Land Details**: Capturing land size for personalized crop suggestions.
+
+## 📱 Features Overview
+
+````carousel
+![Dashboard](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/dashboard_initial_1773157991712.png)
+<!-- slide -->
+![AI Assistant](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/ai_assistant_response_1773158047744.png)
+<!-- slide -->
+![Disease Detection](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/disease_analysis_result_1773158093152.png)
+<!-- slide -->
+![Market Forecast](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/market_forecast_screen_1773158111944.png)
+<!-- slide -->
+![Soil Testing](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/soil_analysis_result_1773158124275.png)
+<!-- slide -->
+![Climate](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/climate_details_1773158148236.png)
+<!-- slide -->
+![Experts](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/experts_screen_1773158200239.png)
+<!-- slide -->
+![Knowledge Center](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/library_view_final_1773158321394.png)
+<!-- slide -->
+![Farming Quiz](file:///C:/Users/sugu/.gemini/antigravity/brain/74b22f35-71bd-4be9-af82-33a10127f431/quiz_result_correct_1773158284074.png)
+````
+
+### 1. AI Assistant & Camera Detection
+- **Chat-based AI**: Farmers can ask any agriculture-related questions.
+- **Disease Recognition**: Uses the camera to scan plant leaves, identify diseases (e.g., Late Blight), and suggest treatments.
+
+### 2. Market & Climate Forecasting
+- **Market Trends**: Real-time price tracking and AI-driven "Hold/Sell" suggestions.
+- **Detailed Forecast**: 7-day weather outlook with temperature and rainfall charts.
+
+### 3. Soil Testing & Smart Reminders
+- **Soil Analysis**: Upload report images for AI analysis of pH, moisture, and minerals.
+- **Smart Reminders**: Automated tasks like "Sowing Paddy" or "Apply Fertilizer" with completion tracking.
+
+### 4. Expert Consultation
+- Connect directly with Dr. Rajesh Kumar or Dr. Anita Singh via chat or video call.
+
+### 5. Learning & Community
+- **Knowledge Center**: Categorized library for crop guides and organic fertilizer recipes.
+- **Agriculture Quiz**: Fun learning module to test farming knowledge.
+
+## ✅ Verification Results
+- All 13 features successfully implemented and verified via local browser testing.
+- UI is fully responsive and uses high-end CSS animations for a premium feel.
+- Data persistence implemented via `localStorage`.

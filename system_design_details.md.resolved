@@ -1,0 +1,95 @@
+# Smart Agriculture App - Detailed System Design
+
+## 1. Database Schema Design (Entity Relationship)
+
+Below is a normalized structure for a relational database (e.g., PostgreSQL) with specialized document storage (e.g., MongoDB) for media/content.
+
+### Core Tables
+
+#### `users` (Relational)
+| Column Name | Type | Description |
+| :--- | :--- | :--- |
+| `id` | UUID | Primary Key |
+| `phone_number` | VARCHAR | Unique ID for Login |
+| `username` | VARCHAR | Farmer's Name |
+| `location_lat` | FLOAT | Latitude for regional data |
+| `location_long` | FLOAT | Longitude for regional data |
+| `preferred_lang`| VARCHAR | Regional language setting |
+| `land_details` | JSONB | Size, soil type, history |
+
+#### `crops` (Relational/Lookup)
+| Column Name | Type | Description |
+| :--- | :--- | :--- |
+| `id` | SERIAL | Primary Key |
+| `name` | VARCHAR | Name (Paddy, Wheat, etc.) |
+| `category` | VARCHAR | Grain, Fruit, Vegetable |
+| `guide_data` | JSONB | Varieties, Duration, soil reqs |
+
+#### `shops` (Relational)
+| Column Name | Type | Description |
+| :--- | :--- | :--- |
+| `id` | UUID | Primary Key |
+| `name` | VARCHAR | Shop Name |
+| `location` | POINT | Geo-spatial coordinates |
+| `rating` | FLOAT | Avg User Rating |
+| `is_organic` | BOOLEAN | Focus on organic/natural |
+
+#### `inventory` (Relational)
+| Column Name | Type | Description |
+| :--- | :--- | :--- |
+| `shop_id` | UUID | FK to Shops |
+| `product_name` | VARCHAR | Product Name |
+| `stock_level` | INT | Current Availability |
+| `price` | FLOAT | Unit Price |
+| `discount` | INT | % Discount |
+
+### AI & Media Modules (Document Store - MongoDB)
+
+#### `media_collection`
+- `media_id`: UUID
+- `title`: String
+- `video_url`: String (S3 Link)
+- `tags`: Array
+- `likes_count`: Int
+
+#### `ai_disease_logs`
+- `user_id`: UUID
+- `image_url`: String
+- `detected_disease`: String
+- `confidence`: Float
+- `suggested_treatment`: String
+- `timestamp`: DateTime
+
+---
+
+## 2. UI Module Suggestions
+
+### Home Dashboard (The "Command Center")
+- **Layout**: Simple 3x3 Grid or Large Vertical Cards.
+- **Top Section**: "Agri-Weather" (Current Temp, Humidity, Rain Probability).
+- **Center Section**: "Smart Reminders" (e.g., "Water your Paddy in 2 hours").
+- **Bottom Section**: "Market Trends" (Price ticker for top crops).
+
+### AI Assistant & Camera
+- **Interaction**: One-tap "Camera" icon from any screen.
+- **Assistant**: Voice-to-text enabled chat interface for farmers who prefer speaking over typing.
+- **Real-time overlays**: Highlight diseased areas on the camera screen using AR frames.
+
+### Market & Prediction Module
+- **Visuals**: Clean, non-distracting Line Graphs showing 'Past 3 Months' vs 'Next 1 Month'.
+- **Action**: "Best time to sell" indicator badge.
+
+### Learning & Media
+- **UI**: Vertical scrolling feed (similar to TikTok/Instagram Reels) but focused solely on agriculture tips.
+- **Engagement**: Share buttons for WhatsApp (Crucial for regional farmer communities).
+
+### Expert Consultation
+- **Grid**: Profile cards of experts with "Available Now" green dot.
+- **History**: Chat-like history of past consultations for reference.
+
+---
+
+## 3. Localization Strategy
+- **Framework**: Use i18next for multi-language support.
+- **Fallback**: Default to English but prompt for regional language on first boot.
+- **Interface**: Minimize text reliance, use universally recognized agriculture icons (Plow, Water Drop, Sun, Shield for Disease).
