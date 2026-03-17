@@ -6,20 +6,80 @@ const state = {
 };
 
 // Simplified Registration Logic
+let generatedOtp = '';
+
+function validateStep1AndNext() {
+    const name = document.getElementById('reg-name')?.value;
+    const email = document.getElementById('reg-email')?.value;
+    const phone = document.getElementById('reg-phone')?.value;
+    const stateLoc = document.getElementById('reg-state')?.value;
+    const district = document.getElementById('reg-district')?.value;
+    const pincode = document.getElementById('reg-pincode')?.value;
+
+    if (name && email && phone && stateLoc && district && pincode) {
+        state.tempUser = { name, email, phone, stateLoc, district, pincode };
+        nextRegStep();
+    } else {
+        alert("Please fill all details to proceed.");
+    }
+}
+
+function validateStep2AndSendOtp() {
+    const areaSoil = document.getElementById('reg-area-soil')?.value;
+    const landSoil = document.getElementById('reg-land-soil')?.value;
+    const acres = document.getElementById('reg-acres')?.value;
+
+    if (areaSoil && landSoil && acres) {
+        state.tempUser = { ...state.tempUser, areaSoil, landSoil, acres };
+        generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+        alert(`OTP sent to ${state.tempUser.phone}: ${generatedOtp}`);
+        nextRegStep();
+    } else {
+        alert("Please fill all details to proceed.");
+    }
+}
+
 function nextRegStep() {
     state.registrationStep++;
     renderRegistration();
 }
 
+function showSignUp() {
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('signup-section').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('login-section').style.display = 'block';
+    document.getElementById('signup-section').style.display = 'none';
+}
+
+function loginUser() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    if(email && password) {
+        state.user = { email: email, name: 'Farmer' };
+        localStorage.setItem('agri_user', JSON.stringify(state.user));
+        navigateTo('dashboard');
+    } else {
+        alert("Please enter both email and password.");
+    }
+}
+
+function verifyOtpAndComplete() {
+    const otp = document.getElementById('reg-otp').value;
+    if(otp && otp === generatedOtp) {
+        completeRegistration();
+    } else if (otp) {
+        alert("Invalid OTP! Please try again.");
+    } else {
+        alert("Please enter OTP.");
+    }
+}
+
 function completeRegistration() {
-    const userData = {
-        name: document.getElementById('reg-name')?.value || 'Farmer',
-        phone: document.getElementById('reg-phone')?.value || '',
-        land: document.getElementById('reg-land')?.value || '',
-        location: document.getElementById('reg-loc')?.value || 'Unknown'
-    };
-    state.user = userData;
-    localStorage.setItem('agri_user', JSON.stringify(userData));
+    state.user = state.tempUser || { name: 'Farmer' };
+    localStorage.setItem('agri_user', JSON.stringify(state.user));
     navigateTo('dashboard');
 }
 
@@ -27,38 +87,45 @@ function renderRegistration() {
     const steps = [
         `
         <div class="auth-card">
-            <h1>Welcome to AgriSmart</h1>
+            <h1>Welcome to AgriNova360°</h1>
             <p>Your AI farming partner</p>
-            <button class="primary-btn" onclick="nextRegStep()">Login / Sign Up</button>
+            
+            <div id="login-section">
+                <h3 style="margin-bottom: 15px;">Login</h3>
+                <input type="email" id="login-email" placeholder="Email ID" style="margin-bottom: 10px;">
+                <input type="password" id="login-password" placeholder="Password" style="margin-bottom: 15px;">
+                <button class="primary-btn" onclick="loginUser()">Login</button>
+                <p style="margin-top: 15px; font-size: 0.9rem;">New User? <a href="#" onclick="showSignUp(); return false;" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Create an account</a></p>
+            </div>
+
+            <div id="signup-section" style="display: none;">
+                <h3 style="margin-bottom: 15px;">Create Account</h3>
+                <input type="text" id="reg-name" placeholder="Full Name" style="margin-bottom: 10px;">
+                <input type="email" id="reg-email" placeholder="Email ID" style="margin-bottom: 10px;">
+                <input type="tel" id="reg-phone" placeholder="Mobile Number" style="margin-bottom: 10px;">
+                <input type="text" id="reg-state" placeholder="State" style="margin-bottom: 10px;">
+                <input type="text" id="reg-district" placeholder="District" style="margin-bottom: 10px;">
+                <input type="text" id="reg-pincode" placeholder="Pincode" style="margin-bottom: 15px;">
+                <button class="primary-btn" onclick="validateStep1AndNext()">Next</button>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Already have an account? <a href="#" onclick="showLogin(); return false;" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Login</a></p>
+            </div>
         </div>
         `,
         `
         <div class="auth-card">
-            <h3>Enter Phone Number</h3>
-            <input type="tel" id="reg-phone" placeholder="+91 00000 00000">
-            <button class="primary-btn" onclick="nextRegStep()">Verify OTP</button>
+            <h3 style="margin-bottom: 15px;">Farm Details</h3>
+            <input type="text" id="reg-area-soil" placeholder="Types of soil in your area" style="margin-bottom: 10px;">
+            <input type="text" id="reg-land-soil" placeholder="Types of soil in your land" style="margin-bottom: 10px;">
+            <input type="number" id="reg-acres" placeholder="How many acres you are having?" style="margin-bottom: 15px;">
+            <button class="primary-btn" onclick="validateStep2AndSendOtp()">Next</button>
         </div>
         `,
         `
         <div class="auth-card">
-            <h3>Set Your Username</h3>
-            <input type="text" id="reg-name" placeholder="Full Name">
-            <button class="primary-btn" onclick="nextRegStep()">Next</button>
-        </div>
-        `,
-        `
-        <div class="auth-card">
-            <h3>Land Details</h3>
-            <input type="number" id="reg-land" placeholder="Land Size (Acres)">
-            <select id="reg-soil"><option>Red Soil</option><option>Black Soil</option><option>Clay</option></select>
-            <button class="primary-btn" onclick="nextRegStep()">Next</button>
-        </div>
-        `,
-        `
-        <div class="auth-card">
-            <h3>Confirm Location</h3>
-            <input type="text" id="reg-loc" value="Punjab, India">
-            <button class="primary-btn" onclick="completeRegistration()">Start Farming</button>
+            <h3 style="margin-bottom: 15px;">Verify Mobile Number</h3>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">We have sent an OTP to your mobile number.</p>
+            <input type="text" id="reg-otp" placeholder="Enter OTP" style="margin-bottom: 15px; text-align: center; letter-spacing: 2px;">
+            <button class="primary-btn" onclick="verifyOtpAndComplete()">Verify & Start</button>
         </div>
         `
     ];
@@ -70,8 +137,6 @@ function renderRegistration() {
                 <div class="progress-dot ${state.registrationStep >= 1 ? 'active' : ''}"></div>
                 <div class="progress-dot ${state.registrationStep >= 2 ? 'active' : ''}"></div>
                 <div class="progress-dot ${state.registrationStep >= 3 ? 'active' : ''}"></div>
-                <div class="progress-dot ${state.registrationStep >= 4 ? 'active' : ''}"></div>
-                <div class="progress-dot ${state.registrationStep >= 5 ? 'active' : ''}"></div>
             </div>
         </section>
     `;
