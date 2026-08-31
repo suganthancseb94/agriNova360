@@ -35,10 +35,10 @@
             </div>
             <div class="nav-actions-top">
                 <!-- Language Selector -->
-                <div class="nav-lang" onclick="toggleLangDropdown(event)">
+                <div class="nav-lang notranslate" onclick="toggleLangDropdown(event)">
                     <i class="fas fa-language"></i>
                     <div class="lang-dropdown" id="langDropdown">
-                        <div class="dropdown-item" onclick="changeLanguage('en', event)">English</div>
+                        <div class="dropdown-item" onclick="changeLanguage('en', event)">English (English)</div>
                         <div class="dropdown-item" onclick="changeLanguage('ta', event)">தமிழ் (Tamil)</div>
                         <div class="dropdown-item" onclick="changeLanguage('hi', event)">हिन्दी (Hindi)</div>
                     </div>
@@ -46,14 +46,8 @@
                 <div class="nav-quiz-icon" onclick="navigateTo('quiz')">
                     <i class="fas fa-gamepad"></i>
                 </div>
-                <div class="nav-user" onclick="toggleUserDropdown(event)">
+                <div class="nav-user" onclick="navigateTo('profile')">
                     <i class="fas fa-user-circle"></i>
-                    <div class="user-dropdown" id="userDropdown">
-                        <div class="dropdown-item" onclick="navigateTo('profile', event)"><i class="fas fa-user"></i> My Profile</div>
-                        <div class="dropdown-item" onclick="navigateTo('settings', event)"><i class="fas fa-cog"></i> Settings</div>
-                        <div class="dropdown-item" onclick="navigateTo('feedback', event)"><i class="fas fa-comment-dots"></i> Feedback</div>
-                        <div class="dropdown-item" onclick="navigateTo('quick-start', event)"><i class="fas fa-play-circle"></i> Quick Start</div>
-                    </div>
                 </div>
             </div>
         </nav>

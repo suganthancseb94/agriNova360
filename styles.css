@@ -1220,9 +1220,9 @@ body > .skiptranslate {
 }
 
 .climate-chart {
-    height: 80px;
+    height: 55px;
     position: relative;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .chart-line-bg {
@@ -1232,7 +1232,7 @@ body > .skiptranslate {
 
 .sparkline {
     width: 100%;
-    height: 60px;
+    height: 40px;
 }
 
 .chart-labels {
@@ -2486,5 +2486,258 @@ i:hover {
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.unit-selector {
+    display: flex;
+    background: #e2e8f0;
+    border-radius: 10px;
+    padding: 3px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.unit-btn {
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unit-btn.active {
+    background: #27ae60;
+    color: white;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.sel-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.sel-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.sel-item:active {
+    transform: scale(0.95);
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.selector-box:active {
+    transform: scale(0.98);
+    border-color: var(--primary-color) !important;
+}
+
+.crops-trees-badge {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crops-trees-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+}
+
+.fa-edit:hover {
+    opacity: 1 !important;
+    transform: scale(1.2);
+}
+
+.n-card {
+    transition: transform 0.2s ease;
+}
+
+.n-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ===== COMMUNITY GROUPS STYLES ===== */
+.comm-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.comm-tab {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    background: #f1f5f9;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.comm-tab.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.comm-tab-content {
+    display: none;
+}
+
+.comm-tab-content.active {
+    display: block;
+}
+
+.comm-groups-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.comm-group-card {
+    background: white;
+    border-radius: 18px;
+    padding: 14px 15px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    border: 1px solid #f1f5f9;
+}
+
+.comm-group-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.comm-group-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.comm-group-info h4 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comm-group-info p {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comm-members {
+    font-size: 0.72rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.comm-group-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.comm-join-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.comm-join-btn.joined {
+    background: #e8f5e9;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.comm-chat-btn {
+    background: #f1f5f9;
+    color: var(--primary-color);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.comm-chat-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Agri Shop Seller Mode Styles */
+.seller-mode-bar {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seller-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.seller-add-btn:hover {
+    transform: translateY(-2px);
+    background: #f39c12 !important;
+}
+
+.preset-img-thumb {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.preset-img-thumb:hover {
+    transform: scale(1.08);
+}
+
+#farmer-sellers-list .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#farmer-sellers-list .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
